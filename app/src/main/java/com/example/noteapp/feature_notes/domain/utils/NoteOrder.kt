@@ -7,9 +7,9 @@ sealed class NoteOrder(val orderBy: OrderBy) {
 
     fun copy (orderBy: OrderBy) : NoteOrder {
         return when(this){
-            is NoteOrder.Title -> NoteOrder.Title(orderBy)
-            is NoteOrder.Date -> NoteOrder.Date(orderBy)
-            is NoteOrder.Color -> NoteOrder.Color(orderBy)
+            is Title -> Title(orderBy)
+            is Date -> Date(orderBy)
+            is Color -> Color(orderBy)
         }
     }
 }

@@ -4,6 +4,13 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.devtoolsKsp)
     alias(libs.plugins.kotlin.hilt)
+    alias(libs.plugins.room)
+}
+
+ksp {
+    arg("compose-destinations.moduleName", "app")
+    arg("compose-destinations.mode", "navgraphs")
+    // other options...
 }
 
 android {
@@ -39,6 +46,10 @@ android {
     buildFeatures {
         compose = true
     }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -68,6 +79,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.compose.destinations.bottom.sheet)
-    implementation(libs.compose.destinations.ksp)
-    implementation(libs.core)
+    ksp(libs.compose.destinations.ksp)
+    implementation(libs.compose.destinations)
 }

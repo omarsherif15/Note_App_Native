@@ -1,4 +1,4 @@
-package com.example.noteapp.feature_notes.presentation.notes
+package com.example.noteapp.feature_notes.presentation.notes.view_model
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

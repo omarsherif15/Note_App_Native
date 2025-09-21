@@ -2,13 +2,28 @@ package com.example.noteapp.feature_notes.presentation.notes.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.noteapp.feature_notes.domain.utils.NoteOrder
 import com.example.noteapp.feature_notes.domain.utils.OrderBy
+import com.example.noteapp.ui.theme.NoteAppTheme
+
+@Preview(showBackground = true)
+@Composable
+fun OrderByPreview(modifier: Modifier = Modifier) {
+    NoteAppTheme {
+        OrderBySection(
+            modifier = Modifier.fillMaxWidth(),
+            noteOrder = NoteOrder.Date(OrderBy.Descending),
+            onOrderSelected = {}
+        )
+    }
+}
 
 @Composable
 fun OrderBySection(
@@ -44,12 +59,12 @@ fun OrderBySection(
         ) {
             DefaultRadioButton(
                 title = "Ascending",
-                isSelected = noteOrder == NoteOrder.Title(OrderBy.Ascending),
+                isSelected = noteOrder.orderBy is OrderBy.Ascending,
                 onSelect = {onOrderSelected(noteOrder.copy(OrderBy.Ascending)) }
             )
             DefaultRadioButton(
                 title = "Descending",
-                isSelected = noteOrder == NoteOrder.Title(OrderBy.Descending),
+                isSelected = noteOrder.orderBy is OrderBy.Descending,
                 onSelect = { onOrderSelected(noteOrder.copy(OrderBy.Descending)) }
             )
         }
